@@ -1,0 +1,51 @@
+<!doctype html>
+<title>Seven & a Half</title>
+<!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+<h1>Seven & a Half</h1>
+  {% if not coords %}
+    <form method="post">
+      <p id="geo"></p>
+      <input type="hidden" name="latitude" id="latitude" value="">
+      <input type="hidden" name="longitude" id="longitude" value="">
+      <input type="submit" value="WHERE">
+    </form>
+
+    <script>
+        if (!navigator.geolocation) {
+    				document.getElementById("geo").innerHTML =
+    					"Geolocation is not supported, this site will not work without it.";
+    			} else {
+    				document.getElementById("geo").innerHTML =
+    					"Geolocation is supported.";
+
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                var lat = position.coords.latitude;
+                var long = position.coords.longitude;
+
+                document.getElementById("latitude").setAttribute("value", lat);
+                console.log(document.getElementById("latitude"));
+                document.getElementById("longitude").setAttribute("value", long);
+                console.log(document.getElementById("longitude"));
+              },
+
+              (error) => {
+                alert(error);
+
+                let typeErr = error.code;
+
+                console.log(typeErr);
+              }
+            );
+          }
+    </script>
+  {% endif %}
+
+<section class="content">
+  {% if coords %}
+    <p>Latitude is {{ coords[0] }}</p>
+    <p>Longitude is {{ coords[1] }}</p>
+
+</section>
+<button><a href="{{ url_for('index') }}">Load again</a></button>
+{% endif %}
