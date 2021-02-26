@@ -2,7 +2,7 @@
 <title>Seven & a Half</title>
 <!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
 <h1>Seven & a Half</h1>
-  {% if not coords %}
+  {% if not maps %}
     <form method="post">
       <p id="geo"></p>
       <input type="hidden" name="latitude" id="latitude" value="">
@@ -41,11 +41,22 @@
     </script>
   {% endif %}
 
-<section class="content">
-  {% if coords %}
-    <p>Latitude is {{ coords[0] }}</p>
-    <p>Longitude is {{ coords[1] }}</p>
+  {% if maps %}
 
-</section>
-<button><a href="{{ url_for('index') }}">Load again</a></button>
-{% endif %}
+    <section class="content">
+      {% for map in maps %}
+        <ul>
+          <li>{{ map['primary_state_name'] }}</li>
+          <li>{{ map['map_name'] }}</li>
+          <li>{{ map['scale'] }}</li>
+          <li>{{ map['date_on_map'] }}</li>
+          <li><a href="{{ map['local_download'] }}">
+            {{ map['local_download']}}</a></li>
+        </ul>
+        {% if not loop.last %}
+        <hr>
+        {% endif %}
+      {% endfor %}
+    </section>
+    <button><a href="{{ url_for('index') }}">Load again</a></button>
+  {% endif %}

@@ -61,9 +61,25 @@ def main():
     if request.method == 'POST':
         latitude = request.form['latitude']
         longitude = request.form['longitude']
-        coords = (latitude, longitude)
 
-        return render_template('index.html', coords=coords)
+        conn = sqlite3.connect(
+            current_app.config['DATABASE'],
+            detect_types=sqlite3.PARSE_DECLTYPES
+        )
+        conn.row_factory = sqlite3.Row
+        c = conn.cursor()
+
+        maps = c.execute('''SELECT map_name, primary_state_name,
+            scale, date_on_map, local_download FROM map WHERE
+            n_lat >= ? AND
+            s_lat <= ? AND
+            w_long <= ? AND
+            e_long >= ?''', (latitude, latitude, longitude, longitude
+            )).fetchall()
+
+        conn.close()
+
+        return render_template('index.html', maps=maps)
 
     return render_template('index.html')
 
