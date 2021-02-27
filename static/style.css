@@ -1,9 +1,21 @@
+body {
+  background-color: black;
+}
+
+.text {
+  color: white;
+}
+
+div.content {
+  margin: 20px;
+}
+
 ul {
   list-style: none;
 }
 
 li {
-  display: flex;
+  display: inline;
 }
 
 a {
