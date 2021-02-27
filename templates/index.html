@@ -1,6 +1,11 @@
-<!doctype html>
-<title>Seven & a Half</title>
-<!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Seven & a Half</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 <h1>Seven & a Half</h1>
   {% if not maps %}
     <form method="post">
@@ -42,8 +47,6 @@
   {% endif %}
 
   {% if maps %}
-
-    <section class="content">
       {% for map in maps %}
         <ul>
           <li>{{ map['primary_state_name'] }}</li>
@@ -57,6 +60,7 @@
         <hr>
         {% endif %}
       {% endfor %}
-    </section>
     <button><a href="{{ url_for('index') }}">Load again</a></button>
   {% endif %}
+  </body>
+  </html>
