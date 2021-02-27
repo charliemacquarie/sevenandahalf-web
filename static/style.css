@@ -1,0 +1,12 @@
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+}
+
+a {
+  color: #ad451e;
+  text-decoration: none;
+}
