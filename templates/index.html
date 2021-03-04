@@ -10,10 +10,10 @@
     <h1 class="text">Seven & a Half</h1>
       {% if not maps %}
         <form method="post">
-          <p class="text" id="geo"></p>
+          <p class="text body" id="geo"></p>
           <input type="hidden" name="latitude" id="latitude" value="">
           <input type="hidden" name="longitude" id="longitude" value="">
-          <input type="submit" value="WHERE">
+          <input type="submit" value="WHERE" class="button">
         </form>
 
         <script>
@@ -50,18 +50,18 @@
       {% if maps %}
           {% for map in maps %}
             <ul>
-              <li class="text">{{ map['primary_state_name'] }} * </li>
-              <li class="text">{{ map['map_name'] }} * </li>
-              <li class="text">{{ map['scale'] }} * </li>
-              <li class="text">{{ map['date_on_map'] }} * </li>
-              <li class="text"><a href="{{ map['local_download'] }}">
+              <li class="text body">{{ map['primary_state_name'] }} * </li>
+              <li class="text body">{{ map['map_name'] }} * </li>
+              <li class="text body">{{ map['scale'] }} * </li>
+              <li class="text body">{{ map['date_on_map'] }} * </li>
+              <li class="text body"><a href="{{ map['local_download'] }}">
                 VIEW MAP</a></li>
             </ul>
             {% if not loop.last %}
             <hr>
             {% endif %}
           {% endfor %}
-      <button><a href="{{ url_for('index') }}">Load again</a></button>
+      <button class="button"><a style="color: white;" href="{{ url_for('index') }}">Load again</a></button>
     {% endif %}
   </div>
 </body>

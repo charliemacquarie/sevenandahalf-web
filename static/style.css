@@ -1,9 +1,28 @@
+@font-face {
+  font-family: 'Lora';
+  src: url('Lora-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Quicksand-Light';
+  src: url('Quicksand-Light.ttf');
+}
+
 body {
   background-color: black;
 }
 
+h1 {
+  font-family: 'Quicksand-Light', Helvetica, sans-serif;
+}
+
 .text {
   color: white;
+}
+
+.body {
+  font-family: 'Lora', Courier, serif;
+  font-size: 20px
 }
 
 div.content {
@@ -21,4 +40,20 @@ li {
 a {
   color: #ad451e;
   text-decoration: none;
+}
+
+.button {
+  background-color: #fe681b;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.2s;
+}
+.button:hover {
+  background-color: #ffa728;
+  color: white;
 }
