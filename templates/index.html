@@ -8,14 +8,19 @@
 </head>
 <body>
   <div class="wrapper">
+    <div class="header">
+    <img class="header" src="{{ url_for('static', filename='banner-one.png') }}">
+    <h1 class="text"><a style="color: white;" href="{{ url_for('index') }}">Seven & a Half</a></h1>
+    <img class="header" src="{{ url_for('static', filename='banner-two.png') }}">
+    </div>
     <div class="content">
-      <h1 class="text">Seven & a Half</h1>
+
         {% if not maps %}
           <form method="post">
             <p class="text body" id="geo"></p>
             <input type="hidden" name="latitude" id="latitude" value="">
             <input type="hidden" name="longitude" id="longitude" value="">
-            <input type="submit" value="WHERE" class="button">
+            <input type="submit" value="WHERE" class="button load">
           </form>
 
           <script>
@@ -59,13 +64,17 @@
                 <li class="text body"><a href="{{ map['local_download'] }}">
                   VIEW MAP</a></li>
               </ul>
-              {% if not loop.last %}
               <hr>
-              {% endif %}
             {% endfor %}
-        <button class="button"><a style="color: white;" href="{{ url_for('index') }}">Load again</a></button>
+          <p class="text body" style="text-align: center;">====> VIEW ALL MAPS <=====</p>
       {% endif %}
     </div>
+      <div class="footer">
+        <img class="footer" src="{{ url_for('static', filename='banner-three.png') }}">
+        {% if maps %}
+          <button class="button load button-footer"><a style="color: white;" href="{{ url_for('index') }}">Load again</a></button>
+        {% endif %}
+      </div>
   </div>
 </body>
 </html>

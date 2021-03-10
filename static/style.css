@@ -14,6 +14,15 @@ body {
 
 h1 {
   font-family: 'Quicksand-Light', Helvetica, sans-serif;
+  text-align: center;
+  margin: 10px 0px;
+  font-size: 4vw;
+}
+
+@media screen and (max-width: 900px) {
+  h1 {
+    font-size: 3em
+  }
 }
 
 .text {
@@ -39,7 +48,17 @@ h1 {
 }
 
 .content {
+  width: 50vw;
+  padding-left: 30px;
   display: inline-block;
+}
+
+@media screen and (max-width: 750px) {
+  .content {
+    width: auto;
+    padding: 0px;
+    display: inline-block;
+  }
 }
 
 ul {
@@ -57,17 +76,45 @@ a {
 }
 
 .button {
-  background-color: #fe681b;
   border: none;
   border-radius: 2px;
-  color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   font-size: 16px;
   transition-duration: 0.2s;
 }
-.button:hover {
+
+.load {
+  margin-top: 10px;
+  background-color: #fe681b;
+  color: white;
+}
+
+.load:hover {
   background-color: #ffa728;
   color: white;
+}
+
+.button-footer {
+  margin-left: 30px;
+}
+
+@media screen and (max-width: 750px) {
+  .button-footer {
+    margin-left: 0px;
+  }
+}
+
+.header, .footer {
+  max-width: 100%;
+  width: 50vw;
+  display: block;
+}
+
+@media screen and (max-width: 800px) {
+  .header, .footer {
+    width: 100%
+  }
+
 }
