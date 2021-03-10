@@ -4,7 +4,7 @@ import csv
 
 import click
 from flask import (
-    Flask, render_template, request, current_app
+    Flask, render_template, request, current_app, url_for
 )
 from flask.cli import with_appcontext
 
@@ -93,6 +93,7 @@ def show_configs():
     configs.append('app.config: {}'.format(app.config))
     configs.append('__name__: {}'.format(__name__))
     configs.append('current_app.config: {}'.format(current_app.config))
+    configs.append('static url: {}'.format(url_for('static', filename='style.css')))
 
     return render_template('config.html', configs=configs)
 
