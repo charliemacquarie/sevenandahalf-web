@@ -2,67 +2,70 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"
   <title>Seven & a Half</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="content">
-    <h1 class="text">Seven & a Half</h1>
-      {% if not maps %}
-        <form method="post">
-          <p class="text body" id="geo"></p>
-          <input type="hidden" name="latitude" id="latitude" value="">
-          <input type="hidden" name="longitude" id="longitude" value="">
-          <input type="submit" value="WHERE" class="button">
-        </form>
+  <div class="wrapper">
+    <div class="content">
+      <h1 class="text">Seven & a Half</h1>
+        {% if not maps %}
+          <form method="post">
+            <p class="text body" id="geo"></p>
+            <input type="hidden" name="latitude" id="latitude" value="">
+            <input type="hidden" name="longitude" id="longitude" value="">
+            <input type="submit" value="WHERE" class="button">
+          </form>
 
-        <script>
-            if (!navigator.geolocation) {
-        				document.getElementById("geo").innerHTML =
-        					"Geolocation is not supported, this site will not work without it.";
-        			} else {
-        				document.getElementById("geo").innerHTML =
-        					"Geolocation is supported.";
+          <script>
+              if (!navigator.geolocation) {
+          				document.getElementById("geo").innerHTML =
+          					"Geolocation is not supported, this site will not work without it.";
+          			} else {
+          				document.getElementById("geo").innerHTML =
+          					"Geolocation is supported.";
 
-                navigator.geolocation.getCurrentPosition(
-                  (position) => {
-                    var lat = position.coords.latitude;
-                    var long = position.coords.longitude;
+                  navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                      var lat = position.coords.latitude;
+                      var long = position.coords.longitude;
 
-                    document.getElementById("latitude").setAttribute("value", lat);
-                    console.log(document.getElementById("latitude"));
-                    document.getElementById("longitude").setAttribute("value", long);
-                    console.log(document.getElementById("longitude"));
-                  },
+                      document.getElementById("latitude").setAttribute("value", lat);
+                      console.log(document.getElementById("latitude"));
+                      document.getElementById("longitude").setAttribute("value", long);
+                      console.log(document.getElementById("longitude"));
+                    },
 
-                  (error) => {
-                    alert(error);
+                    (error) => {
+                      alert(error);
 
-                    let typeErr = error.code;
+                      let typeErr = error.code;
 
-                    console.log(typeErr);
-                  }
-                );
-              }
-        </script>
+                      console.log(typeErr);
+                    }
+                  );
+                }
+          </script>
+        {% endif %}
+
+        {% if maps %}
+            {% for map in maps %}
+              <ul>
+                <li class="text body">{{ map['primary_state_name'] }} * </li>
+                <li class="text body">{{ map['map_name'] }} * </li>
+                <li class="text body">{{ map['scale'] }} * </li>
+                <li class="text body">{{ map['date_on_map'] }} * </li>
+                <li class="text body"><a href="{{ map['local_download'] }}">
+                  VIEW MAP</a></li>
+              </ul>
+              {% if not loop.last %}
+              <hr>
+              {% endif %}
+            {% endfor %}
+        <button class="button"><a style="color: white;" href="{{ url_for('index') }}">Load again</a></button>
       {% endif %}
-
-      {% if maps %}
-          {% for map in maps %}
-            <ul>
-              <li class="text body">{{ map['primary_state_name'] }} * </li>
-              <li class="text body">{{ map['map_name'] }} * </li>
-              <li class="text body">{{ map['scale'] }} * </li>
-              <li class="text body">{{ map['date_on_map'] }} * </li>
-              <li class="text body"><a href="{{ map['local_download'] }}">
-                VIEW MAP</a></li>
-            </ul>
-            {% if not loop.last %}
-            <hr>
-            {% endif %}
-          {% endfor %}
-      <button class="button"><a style="color: white;" href="{{ url_for('index') }}">Load again</a></button>
-    {% endif %}
+    </div>
   </div>
 </body>
 </html>
