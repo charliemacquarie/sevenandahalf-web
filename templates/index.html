@@ -16,20 +16,30 @@
     <div class="content">
 
         {% if not maps %}
+          <p class="text body">This website shows you which US Geological Survey 7.5 minute
+            quadrangle map you are currently on, and lets you see the different versions (by year)
+            of that particular map.</p>
+          <p class="text body">Click the WHERE AM I? button below to get started, or click VIEW ALL maps
+            if you just want to look at maps instead.</p>
+          <p class="text body">Note that this website requires that you have location services turned
+            on to allow the site to access your location. Generally it's a better idea to have location
+            services turned off -- hopefully you have them off now -- but if you want to use this site
+            you'll need to turn them on. This site will not store your location in any way.</p>
+          <p class="text body" id="geo"></p>
+
           <form method="post">
-            <p class="text body" id="geo"></p>
             <input type="hidden" name="latitude" id="latitude" value="">
             <input type="hidden" name="longitude" id="longitude" value="">
-            <input type="submit" value="WHERE" class="button load">
+            <input type="submit" value="WHERE AM I?" class="button load">
           </form>
 
           <script>
               if (!navigator.geolocation) {
           				document.getElementById("geo").innerHTML =
-          					"Geolocation is not supported, this site will not work without it.";
+          					"Geolocation is not supported in your browser, this site will not work without it !";
           			} else {
           				document.getElementById("geo").innerHTML =
-          					"Geolocation is supported.";
+          					"Let's see where we are...";
 
                   navigator.geolocation.getCurrentPosition(
                     (position) => {
@@ -43,7 +53,8 @@
                     },
 
                     (error) => {
-                      alert(error);
+                      document.getElementById("geo").innerHTML =
+              					"Unable to determine your location. Potentially, location services is turned off. Turn it on and try again! " + error;
 
                       let typeErr = error.code;
 
@@ -55,24 +66,26 @@
         {% endif %}
 
         {% if maps %}
+          <p class="text body"><i>state name * map name * map scale * map date</i>
+            <hr>
             {% for map in maps %}
               <ul>
                 <li class="text body">{{ map['primary_state_name'] }} * </li>
                 <li class="text body">{{ map['map_name'] }} * </li>
                 <li class="text body">{{ map['scale'] }} * </li>
                 <li class="text body">{{ map['date_on_map'] }} * </li>
-                <li class="text body"><a href="{{ map['local_download'] }}">
-                  VIEW MAP</a></li>
+                <li class="text body"><a href="{{ map['local_download'] }}"><button class="button view view-map">
+                  VIEW MAP</button></a></li>
               </ul>
               <hr>
             {% endfor %}
-          <p class="text body" style="text-align: center;">====> VIEW ALL MAPS <=====</p>
       {% endif %}
+      <a href="/storage/maps"><button class="button view" style="margin-top: 10px; margin-bottom: 10px">VIEW ALL MAPS</button></a>
     </div>
       <div class="footer">
         <img class="footer" src="{{ url_for('static', filename='banner-three.png') }}">
         {% if maps %}
-          <button class="button load button-footer"><a style="color: white;" href="{{ url_for('index') }}">Load again</a></button>
+          <button class="button load button-footer"><a style="color: white;" href="{{ url_for('index') }}">LOAD AGAIN</a></button>
         {% endif %}
       </div>
   </div>

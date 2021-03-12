@@ -71,7 +71,7 @@ li {
 }
 
 a {
-  color: #ad451e;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -87,13 +87,26 @@ a {
 
 .load {
   margin-top: 10px;
-  background-color: #fe681b;
+  background-color: #e27036;
   color: white;
 }
 
 .load:hover {
-  background-color: #ffa728;
+  background-color: #c85d33;
   color: white;
+}
+
+.view {
+  background-color: #80b6a4;
+  color: white;
+}
+
+.view:hover {
+  background-color: #78b199;
+}
+
+.view-map {
+  margin-left: 10px;
 }
 
 .button-footer {
