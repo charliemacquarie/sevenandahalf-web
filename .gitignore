@@ -6,4 +6,4 @@ instance/
 initialize.csv
 test.py
 backup/
-map-setup/data/*.csv
+
