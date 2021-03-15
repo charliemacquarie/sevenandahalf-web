@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-"""have to find example of what .csv file should be"""
-
-"""have to find location where I even got these .csv files"""
-
 import re
 import csv
 import sys
