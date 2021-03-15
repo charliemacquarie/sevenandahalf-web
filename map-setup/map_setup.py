@@ -29,8 +29,11 @@ print('Reading maps list...')
 csv_loc = 'data'
 csv_files = []
 for file in os.listdir(csv_loc):
-    path = os.path.join(csv_loc, file)
-    csv_files.append(path)
+    if file[-4:] == '.csv':
+        path = os.path.join(csv_loc, file)
+        csv_files.append(path)
+    else:
+        continue
 
 maps = []
 map_ids = [] # store ids to check for duplicates
