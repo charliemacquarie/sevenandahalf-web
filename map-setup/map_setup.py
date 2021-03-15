@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-"""Script takes a .csv file of maps from usgs map downloader
- and downloads .pdf versions of those maps to the
- folder from which the script was run"""
-
 """have to find example of what .csv file should be"""
 
 """have to find location where I even got these .csv files"""
