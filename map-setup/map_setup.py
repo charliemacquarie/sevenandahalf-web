@@ -56,7 +56,7 @@ def main():
     if os.path.exists(map_dir):
         print('The maps storage directory exists already')
         c = input('Enter Y to delete and remake, enter N to stop here and exit: ')
-        if c is 'Y' or c is 'y':
+        if c == 'Y' or c == 'y':
             print('the directory will be remade')
             rmtree(map_dir) # delete directory if it exists already
             os.makedirs(map_dir)
