@@ -70,6 +70,8 @@ def main():
 
     sleep(1)
 
+    retries = []
+
     with open('../initialize.csv', 'w') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for m in maps:
@@ -79,12 +81,20 @@ def main():
             local_download_loc = os.path.join(map_pathname, map_filename)
             print('====> {}'.format(m[50]))
             print('Downloading...')
-            map_request = requests.get(url)
-            print('{}\n'.format(map_request))
-            with open(save_loc, 'wb') as f:
-                f.write(map_request.content)
-            m.append(local_download_loc)
-            writer.writerow(m)
+            try:
+                map_request = requests.get(url)
+                print('{}\n'.format(map_request))
+                with open(save_loc, 'wb') as f:
+                    f.write(map_request.content)
+                m.append(local_download_loc)
+                writer.writerow(m)
+            except TimeoutError:
+                retries.append(m)
+                continue
+
+    print('{} files failed:'.format(len(retries)))
+    for r in retries:
+        print(r)
 
 if __name__ == '__main__':
     main()
