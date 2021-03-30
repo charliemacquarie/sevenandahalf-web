@@ -1,26 +1,12 @@
-import os
 import sqlite3
-import csv
 
-import click
 from flask import (
-    Flask, render_template, request, current_app, url_for
-)
-from flask.cli import with_appcontext
-
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_mapping(
-    SECRET_KEY='dev',
-    DATABASE=os.path.join(app.instance_path, 'maps.sqlite')
+    Blueprint, render_template, request, current_app, url_for
 )
 
-# ensure the instance folder exists
-try:
-    os.makedirs(app.instance_path)
-except OSError:
-    pass
+bp = Blueprint('sevenandahalf', __name__)
 
-@app.route('/', methods=('GET', 'POST'))
+@bp.route('/', methods=('GET', 'POST'))
 def main():
     if request.method == 'POST':
         latitude = request.form['latitude']
@@ -47,19 +33,14 @@ def main():
 
     return render_template('index.html')
 
-app.add_url_rule('/', endpoint='index')
-
-@app.route('/config')
+@bp.route('/configs')
 def show_configs():
     configs = []
 
-    configs.append('Instance path: {}'.format(app.instance_path))
-    configs.append('app.config: {}'.format(app.config))
+    configs.append('Instance path: {}'.format(current_app.instance_path))
+    configs.append('app.config: {}'.format(current_app.config))
     configs.append('__name__: {}'.format(__name__))
     configs.append('current_app.config: {}'.format(current_app.config))
     configs.append('static url: {}'.format(url_for('static', filename='style.css')))
 
-    return render_template('config.html', configs=configs)
-
-if __name__ == '__main__':
-    app.run()
+    return render_template('configs.html', configs=configs)
