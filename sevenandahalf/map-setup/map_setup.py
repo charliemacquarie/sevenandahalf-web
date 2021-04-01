@@ -46,7 +46,7 @@ def main():
 
     sleep(1)
 
-    print('Creating maps storage directory')
+    # print('Creating maps storage directory')
     sleep(1)
 
     map_dirname = '../storage/maps'
@@ -65,12 +65,10 @@ def main():
     else:
         os.makedirs(map_dir)
 
-    print('Downloading {} maps into {}'.format(len(maps), map_dir))
-    print('This will take some time...')
+    print('Storing data for {} maps'.format(len(maps)))
+    # print('This will take some time...')
 
     sleep(1)
-
-    retries = []
 
     with open('../initialize.csv', 'w') as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
@@ -79,22 +77,14 @@ def main():
             map_filename = url.split('/')[-1].replace('%20', '_')
             save_loc = os.path.join(map_dir, map_filename)
             local_download_loc = os.path.join(map_pathname, map_filename)
-            print('====> {}'.format(m[50]))
-            print('Downloading...')
-            try:
-                map_request = requests.get(url)
-                print('{}\n'.format(map_request))
-                with open(save_loc, 'wb') as f:
-                    f.write(map_request.content)
-                m.append(local_download_loc)
-                writer.writerow(m)
-            except TimeoutError:
-                retries.append(m)
-                continue
-
-    print('{} files failed:'.format(len(retries)))
-    for r in retries:
-        print(r)
+            # print('====> {}'.format(m[50]))
+            # print('Downloading...')
+            # map_request = requests.get(url)
+            # print('{}\n'.format(map_request))
+            # with open(save_loc, 'wb') as f:
+                # f.write(map_request.content)
+            m.append(local_download_loc)
+            writer.writerow(m)
 
 if __name__ == '__main__':
     main()

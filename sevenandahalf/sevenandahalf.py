@@ -20,7 +20,7 @@ def main():
         c = conn.cursor()
 
         maps = c.execute('''SELECT map_name, primary_state_name,
-            scale, date_on_map, local_download FROM map WHERE
+            scale, date_on_map, download_geopdf FROM map WHERE
             n_lat >= ? AND
             s_lat <= ? AND
             w_long <= ? AND
