@@ -1,0 +1,5 @@
+include sevenandahalf/schema.sql
+graft sevenandahalf/static
+graft sevenandahalf/templates
+graft sevenandahalf/map-setup
+global-exclude *.pyc
