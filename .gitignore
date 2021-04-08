@@ -9,3 +9,5 @@ backup/
 
 storage/
 sevenandahalf.egg-info/
+build/
+dist/

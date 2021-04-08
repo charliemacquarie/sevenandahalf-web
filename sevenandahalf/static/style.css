@@ -19,6 +19,10 @@ h1 {
   font-size: 4vw;
 }
 
+input {
+  -webkit-appearance: inherit;
+}
+
 @media screen and (max-width: 900px) {
   h1 {
     font-size: 3em
