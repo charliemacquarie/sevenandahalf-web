@@ -3,11 +3,7 @@ venv/
 __pycache__/
 
 instance/
-initialize.csv
-test.py
-backup/
 
-storage/
 sevenandahalf.egg-info/
 build/
 dist/
