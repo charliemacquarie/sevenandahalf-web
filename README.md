@@ -2,7 +2,7 @@
 
 sevenandahalf is a web app that uses your location to show you the USGS topographic maps covering where you are. It is built using [Flask](https://flask.palletsprojects.com/en/2.1.x/)
 
-The "original" sevenandahalf is designed to work on a local network that's not connected to the internet. But I decided to make one to just exist on the web too.
+The "original" sevenandahalf is designed to work on a local network that's not connected to the internet. But I decided to make one to just exist on the internet too (that's this one). It works slightly differently, because it just links directly to the maps on USGS servers rather than copying them to its own server, which would be unnecessary. 
 
 sevenandahalf also includes a script to read a .csv file of maps, specify which ones you want using a year cutoff, a US State list, or a bounding box, download the maps, and initialize the app database with that data to allow you to access the maps.
 
@@ -66,7 +66,7 @@ Initialize the database for the maps you downloaded
 flask init-db
 ```
 
-Your site should now be ready to visit! https://192.168.1.153 in a browser on my network, yours may vary.
+Your site should now be ready to visit!
 
 ### Setup the secret key in the config file
 
