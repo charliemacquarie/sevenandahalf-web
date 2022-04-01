@@ -57,5 +57,11 @@ CREATE TABLE map(
   scan_id INTEGER,
   gda_item_id INTEGER,
   create_date TEXT,
+  byte_count INTEGER,
+  grid_size TEXT,
+  download_product_s3 TEXT,
+  view_thumbnail_image_s3 TEXT,
+  nrn TEXT,
+  nsn TEXT,
   local_download TEXT
 );
