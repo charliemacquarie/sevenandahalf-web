@@ -17,10 +17,10 @@
     <div class="content">
 
         {% if not maps %}
-          <p class="text body">This website shows you which US Geological Survey 7.5 minute
-            quadrangle map you are currently on, and lets you see the different versions (by year)
-            of that particular map.</p>
-          <p class="text body">Click the WHERE AM I? button below to get started.</p>
+          <p class="text body">This website shows you which US Geological Survey topographic maps
+            cover your current location, and lets you view each of those maps.</p>
+          <p class="text body">Click the WHERE AM I? button below to get started, or click VIEW ALL MAPS
+            if you just want to look at maps instead.</p>
           <p class="text body">Note that this website requires that you have location services turned
             on to allow the site to access your location. Generally it's a better idea to have location
             services turned off -- hopefully you have them off now -- but if you want to use this site
@@ -74,7 +74,7 @@
                 <li class="text body">{{ map['map_name'] }} * </li>
                 <li class="text body">{{ map['scale'] }} * </li>
                 <li class="text body">{{ map['date_on_map'] }} * </li>
-                <li class="text body"><a href="{{ map['download_geopdf'] }}"><button class="button view view-map">
+                <li class="text body"><a href="{{ map['download_product_s3'] }}"><button class="button view view-map">
                   VIEW MAP</button></a></li>
               </ul>
               <hr>
