@@ -2,7 +2,7 @@
 
 sevenandahalf is a web app that uses your location to show you the USGS topographic maps covering where you are. It is built using [Flask](https://flask.palletsprojects.com/en/2.1.x/)
 
-The "original" sevenandahalf is designed to work on a local network that's not connected to the internet. But I decided to make one to just exist on the internet too (that's this one). It works slightly differently, because it just links directly to the maps on USGS servers rather than copying them to its own server, which would be unnecessary. 
+The "original" sevenandahalf is designed to work on a local network that's not connected to the internet. But I decided to make one to just exist on the internet too (that's this one). It works slightly differently, because it just links directly to the maps on USGS servers rather than copying them to its own server, which would be unnecessary.
 
 sevenandahalf also includes a script to read a .csv file of maps, specify which ones you want using a year cutoff, a US State list, or a bounding box, download the maps, and initialize the app database with that data to allow you to access the maps.
 
@@ -38,6 +38,8 @@ import sevenandahalf
 application = sevenandahalf.create_app()
 ```
 
+One problem you are likely to encounter is that the wsgi script may not be using the correct version of python (you made a virtual environment, which contains the python you need to use -- this script won't be running in that environment). You can edit the script above to, using the sys and os libraries, check which python it's using, and change it to the virtual environment python if it's not using that one. Again, how you choose do do this may vary, but you are frequently wanting to check the sys.executable() or sys.prefix() and generate a new path for the system to use for python (which points to the virtual environment python)
+
 ## Setup sevenandahalf!
 Tell the system what/where the flask app is to use the setup processes.
 > bash:
@@ -54,7 +56,7 @@ unzip topomaps_all.zip
 
 the resulting csv file `topomaps_all.csv` will be the file you should use with the get-maps command.
 
-Download some map metadata with the get-metadata command.
+Download some map metadata with the get-metadata command. (Note that this command, if run with the entire maps list (topomaps_all.csv) may take a long-time to run, on the order of several hours, depending on how many computing resources you have access to on your server.)
 > bash:
 ```
 flask get-metadata ./topomaps_all.csv
