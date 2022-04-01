@@ -20,7 +20,7 @@ def main():
         c = conn.cursor()
 
         maps = c.execute('''SELECT map_name, primary_state_name,
-            scale, date_on_map, download_geopdf FROM map WHERE
+            scale, date_on_map, download_product_s3 FROM map WHERE
             n_lat >= ? AND
             s_lat <= ? AND
             w_long <= ? AND
@@ -38,9 +38,9 @@ def show_configs():
     configs = []
 
     configs.append('Instance path: {}'.format(current_app.instance_path))
-    configs.append('app.config: {}'.format(current_app.config))
-    configs.append('__name__: {}'.format(__name__))
-    configs.append('current_app.config: {}'.format(current_app.config))
-    configs.append('static url: {}'.format(url_for('static', filename='style.css')))
+    # configs.append('app.config: {}'.format(current_app.config))
+    # configs.append('__name__: {}'.format(__name__))
+    # configs.append('current_app.config: {}'.format(current_app.config))
+    # configs.append('static url: {}'.format(url_for('static', filename='style.css')))
 
     return render_template('configs.html', configs=configs)
