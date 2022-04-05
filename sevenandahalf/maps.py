@@ -130,7 +130,7 @@ def get_maps_command(mapfiles, web_root):
     retry_strategy = Retry(
         total=10,
         status_forcelist=[429, 500, 502, 503, 504],
-        method_whitelist=['HEAD', 'GET', 'PUT', 'DELETE', 'OPTIONS', 'TRACE', 'POST'],
+        allowed_methods=['HEAD', 'GET', 'PUT', 'DELETE', 'OPTIONS', 'TRACE', 'POST'],
         backoff_factor=1
     )
     adapter = HTTPAdapter(max_retries=retry_strategy)
